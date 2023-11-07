@@ -16,6 +16,9 @@ class Student:
         else:
             return 'Ошибка'
 
+    def __str__(self):
+        return f"Имя: {self.name} \ Фамилия: {self.surname} \ Средняя оценка за домашние задания: {self.grades / len(self.grades)} \ Курсы в процессе изучения: {self.courses_in_progress} \ Завершенные курсы: {self.finished_courses}"
+
         
 class Mentor:
     def __init__(self, name, surname):
@@ -31,6 +34,9 @@ class Mentor:
                 student.grades[course] = [grade]
         else:
             return 'Ошибка'
+
+    def __str__(self):
+        return f"Имя : {self.name} \ Фамилия: {self.surname}"
  
 class Reviewer(Mentor):
     pass
@@ -38,6 +44,9 @@ class Reviewer(Mentor):
 class Lecturer(Mentor):
     lecturer_grades = {}
     def rate_hw(self, student, course, grade):
-        print(f"Error: lecturer cannot review homework")
+        return f"Error: lecturer cannot review homework"
+    
+    def __str__(self):
+        return f"Имя : {self.name} \ Фамилия: {self.surname} \ Средняя оценка за лекции: {self.lecturer_grades / len(lecturer_grades)}"
 
     
