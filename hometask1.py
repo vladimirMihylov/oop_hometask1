@@ -22,3 +22,11 @@ class Mentor:
         else:
             return 'Ошибка'
  
+class Reviewer(Mentor):
+    pass
+
+class Lecturer(Mentor):
+    def rate_hw(self, student, course, grade):
+        print(f"Error: lecturer cannot review homework")
+
+    
