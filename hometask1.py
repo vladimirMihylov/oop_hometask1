@@ -17,7 +17,8 @@ class Student:
             return 'Ошибка'
 
     def __str__(self):
-        return f"Имя: {self.name} \ Фамилия: {self.surname} \ Средняя оценка за домашние задания: {self.grades / len(self.grades)} \ Курсы в процессе изучения: {self.courses_in_progress} \ Завершенные курсы: {self.finished_courses}"
+        average_grade = sum(self.grades[course]) / len(self.grades[course])
+        return f"Имя: {self.name} \nФамилия: {self.surname} \nСредняя оценка за домашние задания: {average_grade} \nКурсы в процессе изучения: {self.courses_in_progress} \nЗавершенные курсы: {self.finished_courses}"
 
         
 class Mentor:
@@ -36,7 +37,7 @@ class Mentor:
             return 'Ошибка'
 
     def __str__(self):
-        return f"Имя : {self.name} \ Фамилия: {self.surname}"
+        return f"Имя : {self.name} \nФамилия: {self.surname}"
  
 class Reviewer(Mentor):
     pass
@@ -47,6 +48,7 @@ class Lecturer(Mentor):
         return f"Error: lecturer cannot review homework"
     
     def __str__(self):
-        return f"Имя : {self.name} \ Фамилия: {self.surname} \ Средняя оценка за лекции: {self.lecturer_grades / len(lecturer_grades)}"
+        average_grade = sum(self.lecturer_grades[course]) / len(self.lecturer_grades[course])
+        return f"Имя : {self.name} \nФамилия: {self.surname} \nСредняя оценка за лекции: {average_grade}"
 
-    
+
