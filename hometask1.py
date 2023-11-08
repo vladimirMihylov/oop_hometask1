@@ -16,9 +16,21 @@ class Student:
         else:
             return 'Ошибка'
 
+    def average_grade(self):
+        mid_sum = 0
+        for course_grades in self.grades.values():
+            course_sum = 0
+            for grade in course_grades:
+                course_sum += grade
+            course_mid = course_sum / len(course_grades)
+            mid_sum += course_mid
+        if mid_sum == 0:
+            return f'Error: no grades'
+        else:
+            return round(mid_sum / len(self.grades.values()), 2)
+
     def __str__(self):
-        average_grade = sum(self.grades[course]) / len(self.grades[course])
-        return f"Имя: {self.name} \nФамилия: {self.surname} \nСредняя оценка за домашние задания: {average_grade} \nКурсы в процессе изучения: {self.courses_in_progress} \nЗавершенные курсы: {self.finished_courses}"
+        return f"Имя: {self.name} \nФамилия: {self.surname} \nСредняя оценка за домашние задания: {self.average_grade()} \nКурсы в процессе изучения: {self.courses_in_progress} \nЗавершенные курсы: {self.finished_courses}"
 
         
 class Mentor:
@@ -46,9 +58,59 @@ class Lecturer(Mentor):
     lecturer_grades = {}
     def rate_hw(self, student, course, grade):
         return f"Error: lecturer cannot review homework"
+
+    def average_grade(self):
+        mid_sum = 0
+        for course_grades in self.lecturer_grades.values():
+            course_sum = 0
+            for grade in course_grades:
+                course_sum += grade
+            course_mid = course_sum / len(course_grades)
+            mid_sum += course_mid
+        if mid_sum == 0:
+            return f'Error: no grades'
+        else:
+            return round(mid_sum / len(self.lecturer_grades.values()), 2)
     
     def __str__(self):
-        average_grade = sum(self.lecturer_grades[course]) / len(self.lecturer_grades[course])
-        return f"Имя : {self.name} \nФамилия: {self.surname} \nСредняя оценка за лекции: {average_grade}"
+        return f"Имя : {self.name} \nФамилия: {self.surname} \nСредняя оценка за лекции: {self.average_grade()}"
 
+some_student = Student('Ruoy', 'Eman', 'male')
+other_student = Student('Ivan', 'Ivanov', 'male')
 
+some_lecturer = Lecturer('Some', 'Buddy')
+other_lecturer = Lecturer('Other', 'Buddy')
+
+some_reviewer = Reviewer('Some', 'Reviewer')
+other_reviewer = Reviewer('Other', 'Reviewer')
+
+some_student.courses_in_progress += 'Python', 'Git', 'Java'
+other_student.courses_in_progress += 'JS', 'Git', 'Java'
+
+some_lecturer.courses_attached += 'Python', 'Git', 'Java'
+other_lecturer.courses_attached += 'JS', 'Git', 'Java'
+
+some_student.rate_lecturer(some_lecturer, 'Python', 10)
+some_student.rate_lecturer(some_lecturer, 'Git', 9)
+some_student.rate_lecturer(some_lecturer, 'Java', 8)
+
+other_student.rate_lecturer(other_lecturer, 'JS', 10)
+other_student.rate_lecturer(other_lecturer, 'Git', 4)
+other_student.rate_lecturer(other_lecturer, 'Java', 7)
+
+some_reviewer.courses_attached += 'Python', 'Git', 'Java'
+other_reviewer.courses_attached += 'JS', 'Git', 'Java'
+
+some_reviewer.rate_hw(some_student, 'Python', 10)
+some_reviewer.rate_hw(some_student, 'Git', 9)
+some_reviewer.rate_hw(some_student, 'Java', 8)
+
+other_reviewer.rate_hw(other_student, 'JS', 10)
+other_reviewer.rate_hw(other_student, 'Git', 4)
+other_reviewer.rate_hw(other_student, 'Java', 7)
+
+print(some_student)
+print(some_lecturer)
+print(other_student)
+print(other_lecturer)
+print(some_student.grades)
