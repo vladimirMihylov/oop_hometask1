@@ -29,6 +29,25 @@ class Student:
         else:
             return round(mid_sum / len(self.grades.values()), 2)
 
+    def __lt__(self, other):
+      if isinstance(other, Student):
+        return self.average_grade() < other.average_grade()
+      else:
+        return 'Error'
+
+    def __gt__(self, other):
+      if isinstance(other, Student):
+        return self.average_grade() > other.average_grade()
+      else:
+        return 'Error'
+
+
+    def __eq__(self, other):
+      if isinstance(other, Student):
+        return self.average_grade() == other.average_grade()
+      else:
+        return 'Error'
+
     def __str__(self):
         return f"Имя: {self.name} \nФамилия: {self.surname} \nСредняя оценка за домашние задания: {self.average_grade()} \nКурсы в процессе изучения: {self.courses_in_progress} \nЗавершенные курсы: {self.finished_courses}"
 
@@ -71,6 +90,25 @@ class Lecturer(Mentor):
             return f'Error: no grades'
         else:
             return round(mid_sum / len(self.lecturer_grades.values()), 2)
+
+    def __lt__(self, other):
+      if isinstance(other, Lecturer):
+        return self.average_grade() < other.average_grade()
+      else:
+        return 'Error'
+
+    def __gt__(self, other):
+      if isinstance(other, Lecturer):
+        return self.average_grade() > other.average_grade()
+      else:
+        return 'Error'
+
+
+    def __eq__(self, other):
+      if isinstance(other, Lecturer):
+        return self.average_grade() == other.average_grade()
+      else:
+        return 'Error'
     
     def __str__(self):
         return f"Имя : {self.name} \nФамилия: {self.surname} \nСредняя оценка за лекции: {self.average_grade()}"
@@ -114,3 +152,11 @@ print(some_lecturer)
 print(other_student)
 print(other_lecturer)
 print(some_student.grades)
+
+print(some_student < other_student)
+print(some_student > other_student)
+print(some_student == other_student)
+
+print(some_lecturer < other_lecturer)
+print(some_lecturer > other_lecturer)
+print(some_lecturer == other_lecturer)
