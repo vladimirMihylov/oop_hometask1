@@ -180,3 +180,34 @@ print(other_student.average_course_grade('Git'))
 
 print(some_lecturer.average_course_grade('Python'))
 print(other_lecturer.average_course_grade('Git'))
+
+# Задача 4 вар 2
+
+students_list = [some_student, other_student]
+lecturers_list = [some_lecturer, other_lecturer]
+def average_course_student_grade(students_list, course_name):
+    sum_grades = 0
+    count_grades = 0
+    for student in students_list:
+        if course_name in student.grades:
+            sum_grades += sum(student.grades[course_name])
+            count_grades += len(student.grades[course_name])
+    if count_grades == 0:
+        return f'Error: no grades'
+    else:
+        return round(sum_grades / count_grades, 2)
+
+def average_course_lector_grade(lecturers_list, course_name):
+    sum_grades = 0
+    count_grades = 0
+    for lector in lecturers_list:
+        if course_name in lector.lecturer_grades:
+            sum_grades += sum(lector.lecturer_grades[course_name])
+            count_grades += len(lector.lecturer_grades[course_name])
+    if count_grades == 0:
+        return f'Error: no grades'
+    else:
+        return round(sum_grades / count_grades, 2)
+
+print(average_course_student_grade(students_list, 'Python'))
+print(average_course_lector_grade(lecturers_list, 'Python'))
