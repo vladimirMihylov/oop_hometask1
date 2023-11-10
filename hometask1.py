@@ -29,6 +29,12 @@ class Student:
         else:
             return round(mid_sum / len(self.grades.values()), 2)
 
+    def average_course_grade(self, course):
+        if course in self.grades:
+            return round(sum(self.grades[course]) / len(self.grades[course]), 2)
+        else:
+            return f'Error: no grades'
+
     def __lt__(self, other):
       if isinstance(other, Student):
         return self.average_grade() < other.average_grade()
@@ -91,6 +97,12 @@ class Lecturer(Mentor):
         else:
             return round(mid_sum / len(self.lecturer_grades.values()), 2)
 
+    def average_course_grade(self, course):
+        if course in self.lecturer_grades:
+            return round(sum(self.lecturer_grades[course]) / len(self.lecturer_grades[course]), 2)
+        else:
+            return f'Error: no grades'
+
     def __lt__(self, other):
       if isinstance(other, Lecturer):
         return self.average_grade() < other.average_grade()
@@ -151,7 +163,6 @@ print(some_student)
 print(some_lecturer)
 print(other_student)
 print(other_lecturer)
-print(some_student.grades)
 
 print(some_student < other_student)
 print(some_student > other_student)
@@ -160,3 +171,12 @@ print(some_student == other_student)
 print(some_lecturer < other_lecturer)
 print(some_lecturer > other_lecturer)
 print(some_lecturer == other_lecturer)
+
+
+# Задача 4 (Доработка) 
+
+print(some_student.average_course_grade('Python'))
+print(other_student.average_course_grade('Git'))
+
+print(some_lecturer.average_course_grade('Python'))
+print(other_lecturer.average_course_grade('Git'))
